@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matthewjung04/instock-api.git"
+    "url": "git+https://github.com/matthewjung04/instock-backend.git"
   },
   "author": "Juan, Matthew, Shaqeel, Talha",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/matthewjung04/instock-api/issues"
+    "url": "https://github.com/matthewjung04/instock-backend/issues"
   },
-  "homepage": "https://github.com/matthewjung04/instock-api#readme",
+  "homepage": "https://github.com/matthewjung04/instock-backend#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
