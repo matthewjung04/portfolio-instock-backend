@@ -12,4 +12,4 @@ inventoryRoutes.get("/", async (_req, res) => {
   }
 });
 
-export default inventoryRoutes;
+export default inventoryRoutes;  
