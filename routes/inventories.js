@@ -1,9 +1,9 @@
 import express from 'express';
 import db from '../db.js';
 
-const router = express.Router();
+const inventoryRoutes = express.Router();
 
-router.get("/", async (_req, res) => {
+inventoryRoutes.get("/", async (_req, res) => {
   try {
     const data = await db("inventories");
     res.status(200).json(data);
@@ -12,4 +12,4 @@ router.get("/", async (_req, res) => {
   }
 });
 
-export default router;
+export default inventoryRoutes;
