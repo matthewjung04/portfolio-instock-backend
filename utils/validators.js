@@ -14,3 +14,15 @@ export const validateWarehouse = (warehouse) => {
 
   return schema.validate(warehouse, { abortEarly: false });
 };
+
+export const validateInventory = (inventory) => {
+  const schema = Joi.object({
+    item_name: Joi.string().required(),
+    description: Joi.string().required(),
+    category: Joi.string().required(),
+    status: Joi.string().required(),
+    quantity: Joi.int().required()
+  }).strict();
+
+  return schema.validate(inventory, { abortEarly: false });
+};

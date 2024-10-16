@@ -23,5 +23,5 @@ export default {
     seeds: {
       directory: path.join(__dirname, 'seeds'),
     },
-
- };
+  }
+};
