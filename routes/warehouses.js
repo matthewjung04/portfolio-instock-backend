@@ -68,23 +68,3 @@ warehouseRoutes.put("/:id", async (req, res) => {
   }
 });
 
-//DELETE a warehouse 
-warehouseRoutes.delete("/:id", async (req, res) => {
-  const { id } = req.params;
-  try {
-    const deleteWarehouse = await db("warehouses")
-      .where({ id }).delete();
-      if(!warehouse) {
-        return res.status(404).json( { error: `Warehouse with ID ${id} not found` });
-      }
-      res.sendStatus(204); //no content response
-    }
-    
-    catch(error) {
-      res.status(500).json({
-        error: `Unable to delete warehouse: ${error}`
-      });
-    }
-});
-
-export default warehouseRoutes;
