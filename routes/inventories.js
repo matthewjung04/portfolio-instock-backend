@@ -5,7 +5,7 @@ import loggerInventory from "../utils/logger.js";
 
 const inventoryRoutes = express.Router();
 
-// GET all warehouses
+// GET all inventories
 inventoryRoutes.get("/", async (_req, res) => {
   try {
     const data = await db("inventories");
