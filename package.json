@@ -1,0 +1,43 @@
+{
+  "name": "instock-api",
+  "version": "1.0.0",
+  "description": "InStock project backend",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "setup": "node src/scripts/setup.js",
+    "migrate": "knex migrate:latest",
+    "migrate:down": "knex migrate:down",
+    "migrate:rollback": "knex migrate:rollback",
+    "seed": "knex seed:run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matthewjung04/instock-backend.git"
+  },
+  "author": "Juan, Matthew, Shaqeel, Talha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matthewjung04/instock-backend/issues"
+  },
+  "homepage": "https://github.com/matthewjung04/instock-backend#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "joi": "^17.13.3",
+    "knex": "^3.1.0",
+    "migration": "^0.3.0",
+    "mysql2": "^3.11.3",
+    "object-assign": "^4.1.1",
+    "winston": "^3.15.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "nodemon": "^3.1.7"
+  }
+}
