@@ -31,6 +31,22 @@ warehouseRoutes.get("/:id", async (req, res) => {
   }
 });
 
+// GET list of inventory items by warehouse ID
+warehouseRoutes.get("/:id/inventories", async (req, res) => {
+  const { id } = req.params;
+  const warehouse_id = id;
+  try {
+    const inventory = await db("inventories").where({ warehouse_id });
+    if (!inventory) {
+      return res.status(404).json({ message: "Warehouse not found." });
+    }
+    res.status(200).json(inventory);
+  } catch (err) {
+    logger.error("Error retrieving warehouse inventory:", err);
+    res.status(500).json({ error: `Error retrieving warehouse inventory: ${err.message}` });
+  }
+});
+
 // POST new warehouse
 warehouseRoutes.post("/", async (req, res) => {
   const { error, value } = validateWarehouse(req.body);

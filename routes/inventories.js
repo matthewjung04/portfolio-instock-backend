@@ -26,7 +26,7 @@ inventoryRoutes.get("/:id", async (req, res) => {
     }
     res.status(200).json(inventory);
   } catch (err) {
-    logger.error("Error retrieving inventory:", err);
+    loggerInventory.error("Error retrieving inventory:", err);
     res.status(500).json({ error: `Error retrieving inventory: ${err.message}` });
   }
 });
