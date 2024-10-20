@@ -21,7 +21,7 @@ export const validateInventory = (inventory) => {
     description: Joi.string().required(),
     category: Joi.string().required(),
     status: Joi.string().required(),
-    quantity: Joi.int().required()
+    quantity: Joi.number().required()
   }).strict();
 
   return schema.validate(inventory, { abortEarly: false });
