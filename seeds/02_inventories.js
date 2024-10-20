@@ -11,7 +11,7 @@ export async function seed(knex) {
       description:
         'This 50", 4K LED TV provides a crystal-clear picture and vivid colors.',
       category: 'Electronics',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 500,
     },
     {
@@ -21,7 +21,7 @@ export async function seed(knex) {
       description:
         'Made out of military-grade synthetic materials, this gym bag is highly durable, water resistant, and easy to clean.',
       category: 'Gear',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
     {
@@ -31,7 +31,7 @@ export async function seed(knex) {
       description:
         'A simple 100% cotton hoodie, this is an essential piece for any wardrobe.',
       category: 'Apparel',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
     {
@@ -41,7 +41,7 @@ export async function seed(knex) {
       description:
         'Made from 100% genuine leather, this keychain will keep your keys organized while keeping a classic, professional look.',
       category: 'Accessories',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 2000,
     },
     {
@@ -50,7 +50,7 @@ export async function seed(knex) {
       item_name: 'Shampoo',
       description: 'Natural shampoo made from 99% biodegradable ingredients.',
       category: 'Health',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 4350,
     },
     {
@@ -60,7 +60,7 @@ export async function seed(knex) {
       description:
         'This USB-C phone charger features fast charging for the latest devices.',
       category: 'Electronics',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 10000,
     },
     {
@@ -70,7 +70,7 @@ export async function seed(knex) {
       description:
         'Perfect for spring or summer camping, this 1-person tent is easy to pack and has the option to become modular when used with other products.',
       category: 'Gear',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 800,
     },
     {
@@ -80,7 +80,7 @@ export async function seed(knex) {
       description:
         'Made with a durable 100% waterproof shell, and breathable layers without a ton of vents and perforations. breathable layers without a ton of vents and perforations.',
       category: 'Apparel',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
     {
@@ -90,7 +90,7 @@ export async function seed(knex) {
       description:
         'Crafted from premium materials including a full-grain leather strap and a stainless steel case, this watch features swiss movement and is waterproof up to 5 ATM.',
       category: 'Accessories',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
     {
@@ -100,7 +100,7 @@ export async function seed(knex) {
       description:
         'Organic and hypoallergenic, this soap is safe to use for all skin types.',
       category: 'Health',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 12500,
     },
     {
@@ -110,7 +110,7 @@ export async function seed(knex) {
       description:
         'A 32" IPS LED ultrawide monitor, perfect for work or gaming.',
       category: 'Electronics',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
     {
@@ -120,7 +120,7 @@ export async function seed(knex) {
       description:
         'This sleek, 40L backpack is completely waterproof making it perfect for adventures or the daily commute.',
       category: 'Gear',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
     {
@@ -130,7 +130,7 @@ export async function seed(knex) {
       description:
         'Breathable, and made of 100% organic cotton, this is an essential piece for any wardrobe',
       category: 'Apparel',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
     {
@@ -140,7 +140,7 @@ export async function seed(knex) {
       description:
         'Made from 100% full grain leather this belt will go with any dress or casual outfit.',
       category: 'Accessories',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
     {
@@ -150,7 +150,7 @@ export async function seed(knex) {
       description:
         'This toothpaste is specially formulated to protect enamel and whiten teeth with natural ingredients.',
       category: 'Health',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 4000,
     },
     {
@@ -160,7 +160,7 @@ export async function seed(knex) {
       description:
         'With a 1-month battery life this mouse is perfect for travel and productivity.',
       category: 'Electronics',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 785,
     },
     {
@@ -170,7 +170,7 @@ export async function seed(knex) {
       description:
         'This ultra-light sleeping bag is packed with an eco-friendly fill. Best used in spring or summer temperatures.',
       category: 'Gear',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 987,
     },
     {
@@ -180,7 +180,7 @@ export async function seed(knex) {
       description:
         'Made from waterproof material, this windbreaker is best layered on top of a sweater to keep warm in inclement conditions.',
       category: 'Apparel',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 1185,
     },
     {
@@ -190,7 +190,7 @@ export async function seed(knex) {
       description:
         'With a 1-litre capacity and BPA-free, this water-bottle is perfect for long days out.',
       category: 'Accessories',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
     {
@@ -200,7 +200,7 @@ export async function seed(knex) {
       description:
         '100% natural plant-based protein powder from organic ingredients.',
       category: 'Health',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
     {
@@ -210,7 +210,7 @@ export async function seed(knex) {
       description:
         'This 50", 4K LED TV provides a crystal-clear picture and vivid colors.',
       category: 'Electronics',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
     {
@@ -220,7 +220,7 @@ export async function seed(knex) {
       description:
         'Made out of military-grade synthetic materials, this gym bag is highly durable, water resistant, and easy to clean.',
       category: 'Gear',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 565,
     },
     {
@@ -230,7 +230,7 @@ export async function seed(knex) {
       description:
         'A simple 100% cotton hoodie, this is an essential piece for any wardrobe.',
       category: 'Apparel',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 245,
     },
     {
@@ -240,7 +240,7 @@ export async function seed(knex) {
       description:
         'Made from 100% genuine leather, this keychain will keep your keys organized while keeping a classic, professional look.',
       category: 'Accessories',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
     {
@@ -249,7 +249,7 @@ export async function seed(knex) {
       item_name: 'Shampoo',
       description: 'Natural shampoo made from 99% biodegradable ingredients.',
       category: 'Health',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 209,
     },
     {
@@ -259,7 +259,7 @@ export async function seed(knex) {
       description:
         'This USB-C phone charger features fast charging for the latest devices.',
       category: 'Electronics',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
     {
@@ -269,7 +269,7 @@ export async function seed(knex) {
       description:
         'Perfect for spring or summer camping, this 1-person tent is easy to pack and has the option to become modular when used with other products.',
       category: 'Gear',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
     {
@@ -279,7 +279,7 @@ export async function seed(knex) {
       description:
         'Made with a durable 100% waterproof shell, and breathable layers without a ton of vents and perforations. ',
       category: 'Apparel',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 125,
     },
     {
@@ -289,7 +289,7 @@ export async function seed(knex) {
       description:
         'Crafted from premium materials including a full-grain leather strap and a stainless steel case, this watch features swiss movement and is waterproof up to 5 ATM.',
       category: 'Accessories',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 123,
     },
     {
@@ -299,7 +299,7 @@ export async function seed(knex) {
       description:
         'Organic and hypoallergenic, this soap is safe to use for all skin types.',
       category: 'Health',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 863,
     },
     {
@@ -309,7 +309,7 @@ export async function seed(knex) {
       description:
         'A 32" IPS LED ultrawide monitor, perfect for work or gaming.',
       category: 'Electronics',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 50,
     },
     {
@@ -319,7 +319,7 @@ export async function seed(knex) {
       description:
         'This sleek, 40L backpack is completely waterproof making it perfect for adventures or the daily commute.',
       category: 'Gear',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
     {
@@ -329,7 +329,7 @@ export async function seed(knex) {
       description:
         'Breathable, and made of 100% organic cotton, this is an essential piece for any wardrobe',
       category: 'Apparel',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
     {
@@ -339,7 +339,7 @@ export async function seed(knex) {
       description:
         'Made from 100% full grain leather this belt will go with any dress or casual outfit.',
       category: 'Accessories',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
     {
@@ -349,7 +349,7 @@ export async function seed(knex) {
       description:
         'This toothpaste is specially formulated to protect enamel and whiten teeth with natural ingredients.',
       category: 'Health',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 400,
     },
     {
@@ -359,7 +359,7 @@ export async function seed(knex) {
       description:
         'With a 1-month battery life this mouse is perfect for travel and productivity.',
       category: 'Electronics',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 1275,
     },
     {
@@ -369,7 +369,7 @@ export async function seed(knex) {
       description:
         'This ultra-light sleeping bag is packed with an eco-friendly fill. Best used in spring or summer temperatures.',
       category: 'Gear',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 5672,
     },
     {
@@ -379,7 +379,7 @@ export async function seed(knex) {
       description:
         'Made from waterproof material, this windbreaker is best layered on top of a sweater to keep warm in inclement conditions.',
       category: 'Apparel',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 374,
     },
     {
@@ -389,7 +389,7 @@ export async function seed(knex) {
       description:
         'With a 1-litre capacity and BPA-free, this water-bottle is perfect for long days out.',
       category: 'Accessories',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 9875,
     },
     {
@@ -399,7 +399,7 @@ export async function seed(knex) {
       description:
         '100% natural plant-based protein powder from organic ingredients.',
       category: 'Health',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
     {
@@ -409,7 +409,7 @@ export async function seed(knex) {
       description:
         'This 50", 4K LED TV provides a crystal-clear picture and vivid colors.',
       category: 'Electronics',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
     {
@@ -419,7 +419,7 @@ export async function seed(knex) {
       description:
         'Made out of military-grade synthetic materials, this gym bag is highly durable, water resistant, and easy to clean.',
       category: 'Gear',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 1895,
     },
     {
@@ -429,7 +429,7 @@ export async function seed(knex) {
       description:
         'A simple 100% cotton hoodie, this is an essential piece for any wardrobe.',
       category: 'Apparel',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
     {
@@ -439,7 +439,7 @@ export async function seed(knex) {
       description:
         'Made from 100% genuine leather, this keychain will keep your keys organized while keeping a classic, professional look.',
       category: 'Accessories',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
     {
@@ -448,7 +448,7 @@ export async function seed(knex) {
       item_name: 'Shampoo',
       description: 'Natural shampoo made from 99% biodegradable ingredients.',
       category: 'Health',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 4774,
     },
     {
@@ -458,7 +458,7 @@ export async function seed(knex) {
       description:
         'This USB-C phone charger features fast charging for the latest devices.',
       category: 'Electronics',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 9872,
     },
     {
@@ -468,7 +468,7 @@ export async function seed(knex) {
       description:
         'Perfect for spring or summer camping, this 1-person tent is easy to pack and has the option to become modular when used with other products.',
       category: 'Gear',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 3349,
     },
     {
@@ -478,7 +478,7 @@ export async function seed(knex) {
       description:
         'Made with a durable 100% waterproof shell, and breathable layers without a ton of vents and perforations. ',
       category: 'Apparel',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
     {
@@ -488,7 +488,7 @@ export async function seed(knex) {
       description:
         'Crafted from premium materials including a full-grain leather strap and a stainless steel case, this watch features swiss movement and is waterproof up to 5 ATM.',
       category: 'Accessories',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 2997,
     },
     {
@@ -498,7 +498,7 @@ export async function seed(knex) {
       description:
         'Organic and hypoallergenic, this soap is safe to use for all skin types.',
       category: 'Health',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
     {
@@ -508,7 +508,7 @@ export async function seed(knex) {
       description:
         'A 32" IPS LED ultrawide monitor, perfect for work or gaming.',
       category: 'Electronics',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
     {
@@ -518,7 +518,7 @@ export async function seed(knex) {
       description:
         'This sleek, 40L backpack is completely waterproof making it perfect for adventures or the daily commute.',
       category: 'Gear',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 607,
     },
     {
@@ -528,7 +528,7 @@ export async function seed(knex) {
       description:
         'Breathable, and made of 100% organic cotton, this is an essential piece for any wardrobe',
       category: 'Apparel',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 1205,
     },
     {
@@ -538,7 +538,7 @@ export async function seed(knex) {
       description:
         'Made from 100% full grain leather this belt will go with any dress or casual outfit.',
       category: 'Accessories',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 9863,
     },
     {
@@ -548,7 +548,7 @@ export async function seed(knex) {
       description:
         'This toothpaste is specially formulated to protect enamel and whiten teeth with natural ingredients.',
       category: 'Health',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 1230,
     },
     {
@@ -558,7 +558,7 @@ export async function seed(knex) {
       description:
         'With a 1-month battery life this mouse is perfect for travel and productivity.',
       category: 'Electronics',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
     {
@@ -568,7 +568,7 @@ export async function seed(knex) {
       description:
         'This ultra-light sleeping bag is packed with an eco-friendly fill. Best used in spring or summer temperatures.',
       category: 'Gear',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
     {
@@ -578,7 +578,7 @@ export async function seed(knex) {
       description:
         'Made from waterproof material, this windbreaker is best layered on top of a sweater to keep warm in inclement conditions.',
       category: 'Apparel',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 4508,
     },
     {
@@ -588,7 +588,7 @@ export async function seed(knex) {
       description:
         'With a 1-litre capacity and BPA-free, this water-bottle is perfect for long days out.',
       category: 'Accessories',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 2500,
     },
     {
@@ -598,7 +598,7 @@ export async function seed(knex) {
       description:
         '100% natural plant-based protein powder from organic ingredients.',
       category: 'Health',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
     {
@@ -608,7 +608,7 @@ export async function seed(knex) {
       description:
         'This 50", 4K LED TV provides a crystal-clear picture and vivid colors.',
       category: 'Electronics',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 1300,
     },
     {
@@ -618,7 +618,7 @@ export async function seed(knex) {
       description:
         'Made out of military-grade synthetic materials, this gym bag is highly durable, water resistant, and easy to clean.',
       category: 'Gear',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
     {
@@ -628,7 +628,7 @@ export async function seed(knex) {
       description:
         'A simple 100% cotton hoodie, this is an essential piece for any wardrobe.',
       category: 'Apparel',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
     {
@@ -638,7 +638,7 @@ export async function seed(knex) {
       description:
         'Made from 100% genuine leather, this keychain will keep your keys organized while keeping a classic, professional look.',
       category: 'Accessories',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 298,
     },
     {
@@ -647,7 +647,7 @@ export async function seed(knex) {
       item_name: 'Shampoo',
       description: 'Natural shampoo made from 99% biodegradable ingredients.',
       category: 'Health',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 2888,
     },
     {
@@ -657,7 +657,7 @@ export async function seed(knex) {
       description:
         'This USB-C phone charger features fast charging for the latest devices.',
       category: 'Electronics',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 983,
     },
     {
@@ -667,7 +667,7 @@ export async function seed(knex) {
       description:
         'Perfect for spring or summer camping, this 1-person tent is easy to pack and has the option to become modular when used with other products.',
       category: 'Gear',
-      status: 'In Stock',
+      status: 'IN STOCK',
       quantity: 1406,
     },
     {
@@ -677,7 +677,7 @@ export async function seed(knex) {
       description:
         'Made with a durable 100% waterproof shell, and breathable layers without a ton of vents and perforations. ',
       category: 'Apparel',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
     {
@@ -687,7 +687,7 @@ export async function seed(knex) {
       description:
         'Crafted from premium materials including a full-grain leather strap and a stainless steel case, this watch features swiss movement and is waterproof up to 5 ATM.',
       category: 'Accessories',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
     {
@@ -697,7 +697,7 @@ export async function seed(knex) {
       description:
         'Organic and hypoallergenic, this soap is safe to use for all skin types.',
       category: 'Health',
-      status: 'Out of Stock',
+      status: 'OUT OF STOCK',
       quantity: 0,
     },
   ]);
