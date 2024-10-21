@@ -5,7 +5,7 @@ const inventoryRoutes = express.Router();
 
 // GET all inventories
 inventoryRoutes.route("/")
-  .get(inventoryController.getInventory) /* GET all inventories */
+  .get(inventoryController.getInventory) /* GET all inventories with their Warehouse names */
   .post(inventoryController.addInventory) /* POST new inventory */
 
 inventoryRoutes.route("/:id")

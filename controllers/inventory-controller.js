@@ -3,10 +3,19 @@ import db from '../db.js';
 import { validateInventory } from "../utils/validators.js";
 import loggerInventory from "../utils/logger.js";
 
+/* GET all inventories with their Warehouse names */
 export const getInventory = expressAsyncHandler( async (req, res) => {
   try {
-    const data = await db("inventories");
-    res.status(200).json(data);
+    const data = await db("inventories")
+      .join("warehouses", "warehouses.id", "inventories.warehouse_id"); //JOINS Warehouses and Inventories tables to access Warehouse Name when getting the inventories 
+
+    res.status(200).json(data.map((inventoryDetails) => ({  //Creates an object containing the inventory information and the warehouse name
+      itemName: inventoryDetails.item_name,
+      category: inventoryDetails.category,
+      status: inventoryDetails.status,
+      quantity: inventoryDetails.quantity,
+      warehouseName: inventoryDetails.warehouse_name
+    })));
   } catch (err) {
     loggerInventory.error("Error retrieving inventories:", err);
     res.status(400).json({ error: `Error retrieving data: ${err.message}` });
