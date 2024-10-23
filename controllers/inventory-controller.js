@@ -3,10 +3,27 @@ import db from '../db.js';
 import { validateInventory } from "../utils/validators.js";
 import loggerInventory from "../utils/logger.js";
 
+/* GET all inventories with their Warehouse names */
 export const getInventory = expressAsyncHandler( async (req, res) => {
   try {
-    const data = await db("inventories");
-    res.status(200).json(data);
+    const data = await db("inventories")
+      .join("warehouses", "warehouses.id", "inventories.warehouse_id") //JOINS Warehouses and Inventories tables to access Warehouse Name when getting the inventories 
+      .select(  //Selects columns from the join tables
+        'inventories.id as inventoryId',  //Explicity points to Inventory ID directly, and creates an alias to reference it in the new object. This to prevent ID ambiguity between the two same columns id names from the two tables 
+        'inventories.item_name',
+        'inventories.category',
+        'inventories.status',
+        'inventories.quantity',
+        'warehouses.warehouse_name'
+      );
+    res.status(200).json(data.map((inventoryDetails) => ({  //Creates an object containing the inventory information and the warehouse name
+      id: inventoryDetails.inventoryId,  //Uses alias created for inventory ID
+      itemName: inventoryDetails.item_name,
+      category: inventoryDetails.category,
+      status: inventoryDetails.status,
+      quantity: inventoryDetails.quantity,
+      warehouseName: inventoryDetails.warehouse_name
+    })));
   } catch (err) {
     loggerInventory.error("Error retrieving inventories:", err);
     res.status(400).json({ error: `Error retrieving data: ${err.message}` });
