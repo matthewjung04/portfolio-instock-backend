@@ -1,7 +1,6 @@
 import expressAsyncHandler from 'express-async-handler';
 import db from '../db.js';
 import { validateInventory } from "../utils/validators.js";
-import loggerInventory from "../utils/logger.js";
 
 export const getInventory = expressAsyncHandler(async (req, res) => {
   try {
@@ -24,7 +23,7 @@ export const getInventory = expressAsyncHandler(async (req, res) => {
       warehouseName: inventoryDetails.warehouse_name
     })));
   } catch (err) {
-    loggerInventory.error("Error retrieving inventories:", err);
+    console.error("Error retrieving inventories:", err);
     res.status(400).json({ error: `Error retrieving data: ${err.message}` });
   }
 });
@@ -38,13 +37,12 @@ export const getSingleInventory = expressAsyncHandler(async (req, res) => {
     }
     res.status(200).json(inventory);
   } catch (err) {
-    loggerInventory.error("Error retrieving inventory:", err);
+    console.error("Error retrieving inventory:", err);
     res.status(500).json({ error: `Error retrieving inventory: ${err.message}` });
   }
 });
 
 export const addInventory = expressAsyncHandler(async (req, res) => {
-  // Validate request body
   const { error, value } = validateInventory(req.body);
   if (error) {
     return res.status(400).json({ 
@@ -73,7 +71,7 @@ export const addInventory = expressAsyncHandler(async (req, res) => {
 
     res.status(201).json(newInventory);
   } catch (err) {
-    loggerInventory.error("Error creating inventory:", err);
+    console.error("Error creating inventory:", err);
     res.status(500).json({ 
       error: `An error occurred while creating the inventory: ${err.message}` 
     });
@@ -82,8 +80,7 @@ export const addInventory = expressAsyncHandler(async (req, res) => {
 
 export const editInventory = expressAsyncHandler(async (req, res) => {
   const { id } = req.params;
-
-  // Validate request body
+  
   const { error, value } = validateInventory(req.body);
   if (error) {
     return res.status(400).json({ 
@@ -125,7 +122,7 @@ export const editInventory = expressAsyncHandler(async (req, res) => {
 
     res.status(200).json(updatedInventory);
   } catch (err) {
-    loggerInventory.error("Error updating inventory:", err);
+    console.error("Error updating inventory:", err);
     res.status(500).json({ 
       error: `An error occurred while updating the inventory: ${err.message}` 
     });
@@ -136,28 +133,24 @@ export const deleteInventory = expressAsyncHandler(async (req, res) => {
   const { id } = req.params;
   
   try {
-    // Check if inventory exists before attempting to delete
     const inventoryExists = await db("inventories")
       .where({ id })
       .first();
 
     if (!inventoryExists) {
-      loggerInventory.error(`Attempt to delete non-existent inventory with ID: ${id}`);
+      console.error(`Attempt to delete non-existent inventory with ID: ${id}`);
       return res.status(404).json({ 
         message: `Inventory with ID ${id} not found` 
       });
     }
 
-    // Delete the inventory item
     await db("inventories")
       .where({ id })
       .delete();
 
-    // Return 204 No Content for successful deletion
     res.status(204).send();
-    
   } catch (error) {
-    loggerInventory.error(`Error deleting inventory ${id}:`, error);
+    console.error(`Error deleting inventory ${id}:`, error);
     res.status(500).json({
       error: `Unable to delete inventory: ${error.message}`
     });

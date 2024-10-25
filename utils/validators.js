@@ -1,28 +1,84 @@
-import Joi from "joi";
-
 export const validateWarehouse = (warehouse) => {
-  const schema = Joi.object({
-    warehouse_name: Joi.string().required(),
-    address: Joi.string().required(),
-    city: Joi.string().required(),
-    country: Joi.string().required(),
-    contact_name: Joi.string().required(),
-    contact_position: Joi.string().required(),
-    contact_phone: Joi.string().pattern(/^\+\d{1,3}\s?\(\d{3}\)\s?\d{3}-?\d{4}$/).required(),
-    contact_email: Joi.string().email().required()
-  }).strict();
+  const errors = [];
+  const value = { ...warehouse };
 
-  return schema.validate(warehouse, { abortEarly: false });
+  // Required fields check
+  const requiredFields = [
+    'warehouse_name',
+    'address',
+    'city',
+    'country',
+    'contact_name',
+    'contact_position',
+    'contact_phone',
+    'contact_email'
+  ];
+
+  requiredFields.forEach(field => {
+    if (!warehouse[field]) {
+      errors.push(`${field.replace('_', ' ')} is required`);
+    }
+  });
+
+  // Phone number format validation
+  const phoneRegex = /^\+\d{1,3}\s?\(\d{3}\)\s?\d{3}-?\d{4}$/;
+  if (warehouse.contact_phone && !phoneRegex.test(warehouse.contact_phone)) {
+    errors.push('contact phone must be in format: +1 (123) 456-7890');
+  }
+
+  // Email format validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (warehouse.contact_email && !emailRegex.test(warehouse.contact_email)) {
+    errors.push('contact email must be a valid email address');
+  }
+
+  return {
+    error: errors.length > 0 ? { details: errors.map(e => ({ message: e })) } : null,
+    value
+  };
 };
 
 export const validateInventory = (inventory) => {
-  const schema = Joi.object({
-    item_name: Joi.string().required(),
-    description: Joi.string().required(),
-    category: Joi.string().required(),
-    status: Joi.string().required(),
-    quantity: Joi.number().required()
-  }).strict();
+  const errors = [];
+  const value = { ...inventory };
 
-  return schema.validate(inventory, { abortEarly: false });
+  // Required fields check
+  const requiredFields = [
+    'warehouse_id',
+    'item_name',
+    'description',
+    'category',
+    'status',
+    'quantity'
+  ];
+
+  requiredFields.forEach(field => {
+    if (!inventory[field] && inventory[field] !== 0) {
+      errors.push(`${field.replace('_', ' ')} is required`);
+    }
+  });
+
+  // warehouse_id must be a number
+  if (inventory.warehouse_id && !Number.isInteger(Number(inventory.warehouse_id))) {
+    errors.push('warehouse id must be a number');
+  }
+
+  // quantity must be a non-negative number
+  if (inventory.quantity !== undefined) {
+    const quantity = Number(inventory.quantity);
+    if (!Number.isInteger(quantity) || quantity < 0) {
+      errors.push('quantity must be a non-negative number');
+    }
+    value.quantity = quantity;
+  }
+
+  // status must be either 'In Stock' or 'Out of Stock'
+  if (inventory.status && !['In Stock', 'Out of Stock'].includes(inventory.status)) {
+    errors.push('status must be either "In Stock" or "Out of Stock"');
+  }
+
+  return {
+    error: errors.length > 0 ? { details: errors.map(e => ({ message: e })) } : null,
+    value
+  };
 };
