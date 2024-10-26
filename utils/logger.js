@@ -1,29 +1,91 @@
-import winston from "winston";
+const getFormattedDate = () => {
+  return new Date().toISOString();
+};
 
-const logger = winston.createLogger({
-  level: "info",
-  format: winston.format.json(),
-  defaultMeta: { service: "warehouse-service" },
-  transports: [
-    new winston.transports.File({ filename: "error.log", level: "error" }),
-    new winston.transports.File({ filename: "combined.log" }),
-  ],
-});
+const logToFile = (filename, message) => {
+  // Optional: You can implement file logging here using fs if needed
+  // For now, we'll just use console
+  console.log(`[${filename}] ${message}`);
+};
 
-const loggerInventory = winston.createLogger({
-  level: "info",
-  format: winston.format.json(),
-  defaultMeta: { service: "inventory-service" },
-  transports: [
-    new winston.transports.File({ filename: "error.log", level: "error" }),
-    new winston.transports.File({ filename: "combined.log" }),
-  ],
-});
+const logger = {
+  error: (message, error = null) => {
+    const logMessage = {
+      level: 'error',
+      timestamp: getFormattedDate(),
+      service: 'warehouse-service',
+      message: message,
+      error: error?.toString()
+    };
+    
+    console.error(JSON.stringify(logMessage));
+    logToFile('error.log', JSON.stringify(logMessage));
+  },
+  info: (message) => {
+    const logMessage = {
+      level: 'info',
+      timestamp: getFormattedDate(),
+      service: 'warehouse-service',
+      message: message
+    };
 
+    console.log(JSON.stringify(logMessage));
+    logToFile('combined.log', JSON.stringify(logMessage));
+  }
+};
+
+const loggerInventory = {
+  error: (message, error = null) => {
+    const logMessage = {
+      level: 'error',
+      timestamp: getFormattedDate(),
+      service: 'inventory-service',
+      message: message,
+      error: error?.toString()
+    };
+
+    console.error(JSON.stringify(logMessage));
+    logToFile('error.log', JSON.stringify(logMessage));
+  },
+  info: (message) => {
+    const logMessage = {
+      level: 'info',
+      timestamp: getFormattedDate(),
+      service: 'inventory-service',
+      message: message
+    };
+
+    console.log(JSON.stringify(logMessage));
+    logToFile('combined.log', JSON.stringify(logMessage));
+  }
+};
+
+// Add console logging for non-production environments
 if (process.env.NODE_ENV !== "production") {
-  logger.add(new winston.transports.Console({
-    format: winston.format.simple(),
-  }));
+  const originalLoggerError = logger.error;
+  const originalLoggerInfo = logger.info;
+  const originalLoggerInventoryError = loggerInventory.error;
+  const originalLoggerInventoryInfo = loggerInventory.info;
+
+  logger.error = (message, error = null) => {
+    console.error(`[warehouse-service] ERROR: ${message}`, error);
+    originalLoggerError(message, error);
+  };
+
+  logger.info = (message) => {
+    console.log(`[warehouse-service] INFO: ${message}`);
+    originalLoggerInfo(message);
+  };
+
+  loggerInventory.error = (message, error = null) => {
+    console.error(`[inventory-service] ERROR: ${message}`, error);
+    originalLoggerInventoryError(message, error);
+  };
+
+  loggerInventory.info = (message) => {
+    console.log(`[inventory-service] INFO: ${message}`);
+    originalLoggerInventoryInfo(message);
+  };
 }
 
-export default {logger, loggerInventory} ;
+export default { logger, loggerInventory };

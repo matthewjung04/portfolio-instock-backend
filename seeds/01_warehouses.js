@@ -42,7 +42,7 @@ export async function seed(knex) {
     },
     {
       id: 4,
-      warehouse_name: 'SF',
+      warehouse_name: 'San Fran',
       address: '890 Brannnan Street',
       city: 'San Francisco',
       country: 'USA',
