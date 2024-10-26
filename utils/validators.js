@@ -73,8 +73,8 @@ export const validateInventory = (inventory) => {
   }
 
   // status must be either 'In Stock' or 'Out of Stock'
-  if (inventory.status && !['In Stock', 'Out of Stock'].includes(inventory.status)) {
-    errors.push('status must be either "In Stock" or "Out of Stock"');
+  if (inventory.status && !['IN STOCK', 'OUT OF STOCK'].includes(inventory.status)) {
+    errors.push('status must be either "IN STOCK" or "OUT OF STOCK"');
   }
 
   return {

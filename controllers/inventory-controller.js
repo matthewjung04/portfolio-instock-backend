@@ -53,6 +53,7 @@ export const getInventory = expressAsyncHandler(async (req, res) => {
 // Ticket #28: POST/CREATE new inventory
 export const addInventory = expressAsyncHandler(async (req, res) => {
   const { error, value } = validateInventory(req.body);
+  
   if (error) {
     return res.status(400).json({ 
       error: "Validation failed",
