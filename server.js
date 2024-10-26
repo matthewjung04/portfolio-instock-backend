@@ -3,7 +3,6 @@ import express from 'express';
 import cors from 'cors';
 import warehouseRoutes from './routes/warehouses.js';
 import inventoryRoutes from './routes/inventories.js';
-import logger from './utils/logger.js';
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -25,7 +24,7 @@ console.log("API routes registered");
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-  logger.error(err.stack);
+  console.error('Error:', err.stack);
   res.status(500).send('Something broke!');
 });
 

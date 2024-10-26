@@ -4,15 +4,15 @@ import * as warehouseController from "../controllers/warehouse-controller.js"
 const warehouseRoutes = express.Router();
 
 warehouseRoutes.route("/")
-  .get(warehouseController.getWarehouses) /* GET all warehouses */
-  .post(warehouseController.addNewWarehouse) /* POST new warehouse */
+  .get(warehouseController.getWarehouses)  // Supports sorting (#32) and search (#34)
+  .post(warehouseController.addNewWarehouse)
 
 warehouseRoutes.route("/:id")
-  .get(warehouseController.getSingleWarehouse) /* GET single warehouse by ID */
-  .put(warehouseController.editWarehouse) /* PUT updated warehouse */
-  .delete(warehouseController.deleteWarehouse) /* DELETE a warehouse */
+  .get(warehouseController.getSingleWarehouse)
+  .put(warehouseController.editWarehouse)
+  .delete(warehouseController.deleteWarehouse)
   
 warehouseRoutes.route("/:id/inventories")
-  .get(warehouseController.getWarehouseInventory) /* GET list of inventory items by warehouse ID */
+  .get(warehouseController.getWarehouseInventory)  // Ticket #27
 
 export default warehouseRoutes;

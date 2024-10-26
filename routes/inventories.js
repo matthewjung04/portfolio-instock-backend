@@ -3,14 +3,13 @@ import * as inventoryController from "../controllers/inventory-controller.js"
 
 const inventoryRoutes = express.Router();
 
-// GET all inventories
 inventoryRoutes.route("/")
-  .get(inventoryController.getInventory) /* GET all inventories with their Warehouse names */
-  .post(inventoryController.addInventory) /* POST new inventory */
+  .get(inventoryController.getInventory)    // Supports sorting (#32) and search (#34)
+  .post(inventoryController.addInventory)   // Ticket #28
 
 inventoryRoutes.route("/:id")
-  .get(inventoryController.getSingleInventory) /* GET single inventory item by ID */
-  .put(inventoryController.editInventory) /* PUT updated inventory */
-  .delete(inventoryController.deleteInventory) /* DELETE an inventory */
+  .get(inventoryController.getSingleInventory)
+  .put(inventoryController.editInventory)   // Ticket #29
+  .delete(inventoryController.deleteInventory) // Ticket #30
 
 export default inventoryRoutes;
