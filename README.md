@@ -231,3 +231,173 @@ All endpoints return appropriate error responses:
 ```
 
 This backend implementation provides a complete RESTful API for warehouse and inventory management with proper error handling, data validation, and database operations.
+
+
+# Testing Guide for Implemented Tickets
+
+## Prerequisites
+1. Make sure your server is running:
+```bash
+npm start
+```
+
+2. Ensure your database is properly seeded:
+```bash
+npm run migrate:rollback
+npm run migrate
+npm run seed
+```
+
+## Test Each Ticket
+
+### Ticket #27: GET Warehouse Inventories
+```bash
+# Get inventories for warehouse 1
+curl http://localhost:8080/api/warehouses/1/inventories
+
+# Test non-existent warehouse
+curl http://localhost:8080/api/warehouses/999/inventories
+
+# Expected responses:
+# - 200 and inventory list for valid warehouse
+# - 404 for non-existent warehouse
+```
+
+### Ticket #28: POST New Inventory
+```bash
+# Create new inventory item
+curl -X POST http://localhost:8080/api/inventories \
+-H "Content-Type: application/json" \
+-d '{
+    "warehouse_id": 1,
+    "item_name": "Paper Towels",
+    "description": "Made out of military-grade synthetic materials",
+    "category": "Gear",
+    "status": "In Stock",
+    "quantity": 100
+}'
+
+# Test invalid warehouse_id
+curl -X POST http://localhost:8080/api/inventories \
+-H "Content-Type: application/json" \
+-d '{
+    "warehouse_id": 999,
+    "item_name": "Test Item",
+    "description": "Test Description",
+    "category": "Test",
+    "status": "In Stock",
+    "quantity": 100
+}'
+
+# Expected responses:
+# - 201 and new inventory for valid request
+# - 400 for invalid warehouse_id
+# - 400 for missing/invalid fields
+```
+
+### Ticket #29: PUT/EDIT Inventory
+```bash
+# Update inventory item
+curl -X PUT http://localhost:8080/api/inventories/1 \
+-H "Content-Type: application/json" \
+-d '{
+    "warehouse_id": 1,
+    "item_name": "Updated Item",
+    "description": "Updated Description",
+    "category": "Updated Category",
+    "status": "In Stock",
+    "quantity": 200
+}'
+
+# Expected responses:
+# - 200 and updated inventory for valid request
+# - 404 for non-existent inventory
+# - 400 for invalid warehouse_id
+```
+
+### Ticket #30: DELETE Inventory
+```bash
+# Delete inventory item
+curl -X DELETE http://localhost:8080/api/inventories/1
+
+# Test non-existent inventory
+curl -X DELETE http://localhost:8080/api/inventories/999
+
+# Expected responses:
+# - 204 for successful deletion
+# - 404 for non-existent inventory
+```
+
+### Ticket #32: Sorting Functionality
+```bash
+# Sort warehouses
+curl "http://localhost:8080/api/warehouses?sort_by=warehouse_name&order_by=asc"
+curl "http://localhost:8080/api/warehouses?sort_by=warehouse_name&order_by=desc"
+
+# Sort inventories
+curl "http://localhost:8080/api/inventories?sort_by=item_name&order_by=asc"
+curl "http://localhost:8080/api/inventories?sort_by=quantity&order_by=desc"
+
+# Expected response:
+# - 200 and sorted list
+```
+
+### Ticket #34: Search Functionality
+```bash
+# Search warehouses
+curl "http://localhost:8080/api/warehouses?s=Seattle"
+
+# Search inventories
+curl "http://localhost:8080/api/inventories?s=Electronics"
+
+# Combined search and sort
+curl "http://localhost:8080/api/inventories?s=Electronics&sort_by=item_name&order_by=desc"
+
+# Expected response:
+# - 200 and filtered list
+```
+
+## Verification Checklist
+
+### Ticket #27
+- [ ] Returns correct inventory items for warehouse
+- [ ] Returns 404 for non-existent warehouse
+- [ ] Includes all required fields
+
+### Ticket #28
+- [ ] Creates new inventory with valid data
+- [ ] Validates warehouse existence
+- [ ] Returns 400 for invalid data
+- [ ] Returns 201 with new inventory data
+
+### Ticket #29
+- [ ] Updates existing inventory
+- [ ] Validates all fields
+- [ ] Checks warehouse existence
+- [ ] Returns appropriate error codes
+
+### Ticket #30
+- [ ] Deletes inventory successfully
+- [ ] Returns 204 on success
+- [ ] Returns 404 for non-existent inventory
+
+### Ticket #32
+- [ ] Sorts warehouses correctly
+- [ ] Sorts inventories correctly
+- [ ] Handles both ascending and descending orders
+- [ ] Works with all sortable fields
+
+### Ticket #34
+- [ ] Searches warehouses across all fields
+- [ ] Searches inventories across all fields
+- [ ] Case-insensitive search
+- [ ] Works with partial matches
+- [ ] Combines with sorting functionality
+
+## Troubleshooting
+If tests fail:
+1. Check if server is running
+2. Verify database connection
+3. Ensure data is properly seeded
+4. Check console for error messages
+5. Verify request format and content-type headers

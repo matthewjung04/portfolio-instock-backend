@@ -4,7 +4,28 @@ import { validateWarehouse } from "../utils/validators.js";
 
 export const getWarehouses = expressAsyncHandler(async (req, res) => {
   try {
-    const data = await db("warehouses");
+    const { sort_by, order_by = 'asc', s } = req.query;
+    let query = db("warehouses");
+
+    // Search functionality (Ticket #34)
+    if (s) {
+      query = query.where(function() {
+        this.whereILike('warehouse_name', `%${s}%`)
+            .orWhereILike('address', `%${s}%`)
+            .orWhereILike('city', `%${s}%`)
+            .orWhereILike('country', `%${s}%`)
+            .orWhereILike('contact_name', `%${s}%`)
+            .orWhereILike('contact_position', `%${s}%`)
+            .orWhereILike('contact_email', `%${s}%`);
+      });
+    }
+
+    // Sorting functionality (Ticket #32)
+    if (sort_by) {
+      query = query.orderBy(sort_by, order_by);
+    }
+
+    const data = await query;
     res.status(200).json(data);
   } catch (err) {
     console.error("Error retrieving warehouses:", err);
@@ -26,20 +47,36 @@ export const getSingleWarehouse = expressAsyncHandler(async (req, res) => {
   }
 });
 
+// Ticket #27: GET warehouse inventories
 export const getWarehouseInventory = expressAsyncHandler(async (req, res) => {
   const { id } = req.params;
+  const { sort_by, order_by = 'asc', s } = req.query;
+  
   try {
-    // First check if warehouse exists
+    // Check if warehouse exists
     const warehouse = await db("warehouses").where({ id }).first();
     if (!warehouse) {
       return res.status(404).json({ message: "Warehouse not found" });
     }
 
-    // Get inventory items for the warehouse
-    const inventory = await db("inventories")
+    let query = db("inventories")
       .where({ warehouse_id: id })
       .select('id', 'item_name', 'category', 'status', 'quantity');
 
+    // Search functionality
+    if (s) {
+      query = query.where(function() {
+        this.whereILike('item_name', `%${s}%`)
+            .orWhereILike('category', `%${s}%`);
+      });
+    }
+
+    // Sorting functionality
+    if (sort_by) {
+      query = query.orderBy(sort_by, order_by);
+    }
+
+    const inventory = await query;
     res.status(200).json(inventory);
   } catch (err) {
     console.error("Error retrieving warehouse inventory:", err);

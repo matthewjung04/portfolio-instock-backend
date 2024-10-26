@@ -4,23 +4,45 @@ import { validateInventory } from "../utils/validators.js";
 
 export const getInventory = expressAsyncHandler(async (req, res) => {
   try {
-    const data = await db("inventories")
+    const { sort_by, order_by = 'asc', s } = req.query;
+    let query = db("inventories")
       .join("warehouses", "warehouses.id", "inventories.warehouse_id")
       .select(
         'inventories.id as inventoryId',
         'inventories.item_name',
+        'inventories.description',
         'inventories.category',
         'inventories.status',
         'inventories.quantity',
         'warehouses.warehouse_name'
       );
-    res.status(200).json(data.map((inventoryDetails) => ({
-      id: inventoryDetails.inventoryId,
-      itemName: inventoryDetails.item_name,
-      category: inventoryDetails.category,
-      status: inventoryDetails.status,
-      quantity: inventoryDetails.quantity,
-      warehouseName: inventoryDetails.warehouse_name
+
+    // Search functionality (Ticket #34)
+    if (s) {
+      query = query.where(function() {
+        this.whereILike('inventories.item_name', `%${s}%`)
+            .orWhereILike('inventories.category', `%${s}%`)
+            .orWhereILike('inventories.description', `%${s}%`)
+            .orWhereILike('warehouses.warehouse_name', `%${s}%`);
+      });
+    }
+
+    // Sorting functionality (Ticket #32)
+    if (sort_by) {
+      const columnName = sort_by.includes('.') ? sort_by : `inventories.${sort_by}`;
+      query = query.orderBy(columnName, order_by);
+    }
+
+    const data = await query;
+    
+    res.status(200).json(data.map((item) => ({
+      id: item.inventoryId,
+      itemName: item.item_name,
+      description: item.description,
+      category: item.category,
+      status: item.status,
+      quantity: item.quantity,
+      warehouseName: item.warehouse_name
     })));
   } catch (err) {
     console.error("Error retrieving inventories:", err);
@@ -28,20 +50,7 @@ export const getInventory = expressAsyncHandler(async (req, res) => {
   }
 });
 
-export const getSingleInventory = expressAsyncHandler(async (req, res) => {
-  const { id } = req.params;
-  try {
-    const inventory = await db("inventories").where({ id }).first();
-    if (!inventory) {
-      return res.status(404).json({ message: "Inventory not found" });
-    }
-    res.status(200).json(inventory);
-  } catch (err) {
-    console.error("Error retrieving inventory:", err);
-    res.status(500).json({ error: `Error retrieving inventory: ${err.message}` });
-  }
-});
-
+// Ticket #28: POST/CREATE new inventory
 export const addInventory = expressAsyncHandler(async (req, res) => {
   const { error, value } = validateInventory(req.body);
   if (error) {
@@ -63,7 +72,6 @@ export const addInventory = expressAsyncHandler(async (req, res) => {
       });
     }
 
-    // Insert new inventory item
     const [newInventoryId] = await db("inventories").insert(value);
     const newInventory = await db("inventories")
       .where({ id: newInventoryId })
@@ -78,6 +86,7 @@ export const addInventory = expressAsyncHandler(async (req, res) => {
   }
 });
 
+// Ticket #29: PUT/EDIT inventory
 export const editInventory = expressAsyncHandler(async (req, res) => {
   const { id } = req.params;
   
@@ -110,12 +119,10 @@ export const editInventory = expressAsyncHandler(async (req, res) => {
       });
     }
 
-    // Update inventory
     await db("inventories")
       .where({ id })
       .update(value);
 
-    // Get updated inventory
     const updatedInventory = await db("inventories")
       .where({ id })
       .first();
@@ -129,6 +136,7 @@ export const editInventory = expressAsyncHandler(async (req, res) => {
   }
 });
 
+// Ticket #30: DELETE inventory
 export const deleteInventory = expressAsyncHandler(async (req, res) => {
   const { id } = req.params;
   
@@ -154,5 +162,19 @@ export const deleteInventory = expressAsyncHandler(async (req, res) => {
     res.status(500).json({
       error: `Unable to delete inventory: ${error.message}`
     });
+  }
+});
+
+export const getSingleInventory = expressAsyncHandler(async (req, res) => {
+  const { id } = req.params;
+  try {
+    const inventory = await db("inventories").where({ id }).first();
+    if (!inventory) {
+      return res.status(404).json({ message: "Inventory not found" });
+    }
+    res.status(200).json(inventory);
+  } catch (err) {
+    console.error("Error retrieving inventory:", err);
+    res.status(500).json({ error: `Error retrieving inventory: ${err.message}` });
   }
 });
