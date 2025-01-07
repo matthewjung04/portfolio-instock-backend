@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matthewjung04/portfolio-instock-backend.git"
+    "url": "git+https://github.com/matthewjung04/porfolio-instock-backend.git"
   },
   "author": "Juan, Matthew, Shaqeel, Talha",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/matthewjung04/portfolio-instock-backend/issues"
+    "url": "https://github.com/matthewjung04/porfolio-instock-backend/issues"
   },
-  "homepage": "https://github.com/matthewjung04/portfolio-instock-backend#readme",
+  "homepage": "https://github.com/matthewjung04/porfolio-instock-backend#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
