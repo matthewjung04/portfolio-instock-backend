@@ -5,7 +5,7 @@ import warehouseRoutes from './routes/warehouses.js';
 import inventoryRoutes from './routes/inventories.js';
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5050;
 
 app.use(cors());
 app.use(express.json());
