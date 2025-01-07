@@ -8,7 +8,7 @@ dotenv.config();
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
-const dbUrl = process.env.JAWS_URL;
+const dbUrl = process.env.JAWSDB_URL;
 const dbConfig = parse(dbUrl);
 
 
